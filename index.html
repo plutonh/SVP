@@ -5,57 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVALON | Main</title>
     <style>
+        /* 기본 설정 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000; }
+        body, html { 
+            width: 100%; height: 100%; 
+            overflow: hidden; 
+            background-color: #000; 
+            font-family: 'Times New Roman', serif; /* 폰트 통일 */
+        }
 
+        /* 히어로 섹션 (배경 이미지) */
         .hero {
             width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1599739291060-4578e77fa547?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-position: center;
-            display: flex; justify-content: center; align-items: center;
+            /* ▼▼▼ [중요] 여기에 cover.png 파일명을 넣어주세요 ▼▼▼ */
+            /* 예시: url('cover.png'); */
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), 
+                        url('./cover.png');
+            background-size: cover; 
+            background-position: center;
+            display: flex; 
+            flex-direction: column; /* 세로 정렬 */
+            justify-content: center; 
+            align-items: center;
             cursor: pointer;
+            position: relative;
         }
 
+        /* 메인 타이틀 (AVALON) */
         .hero h1 {
             color: #d4af37;
-            font-size: 15vw;
-            letter-spacing: 1.5rem;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            font-family: 'Times New Roman', serif;
+            font-size: 12vw; /* 모바일 고려하여 크기 약간 조정 */
+            text-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
             text-transform: uppercase;
+            margin-bottom: 20px;
+            
+            /* [핵심] 초기 상태 및 애니메이션 적용 */
+            opacity: 0; /* 처음엔 안 보임 */
+            transform: translateY(50px) scale(0.9); /* 아래로 내려가 있고 약간 작음 */
+            filter: blur(20px); /* 흐림 효과 */
+            /* 1초 딜레이 후, 2초 동안 'dramaticReveal' 애니메이션 실행 */
+            animation: dramaticReveal 2s cubic-bezier(0.23, 1, 0.32, 1) 1s forwards;
         }
 
-        /* 드래그 유도 안내 */
+        /* 드래그 유도 안내 텍스트 */
         .hint {
-            position: absolute; bottom: 30px; color: #d4af37;
-            font-size: 1rem; animation: pulse 2s infinite;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            letter-spacing: 0.2rem;
+            
+            /* [핵심] 초기 상태 및 애니메이션 적용 */
+            opacity: 0;
+            transform: translateY(20px);
+            /* 타이틀이 다 나온 뒤에(딜레이 2.5초) 천천히 나타남 */
+            animation: fadeUp 1s ease-out 2.8s forwards;
         }
-        @keyframes pulse {
-            0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; }
+
+        /* --- [애니메이션 정의 Keyframes] --- */
+
+        /* 1. 메인 타이틀 등장 효과 (블러 + 서서히 선명하게 + 커지면서 올라옴) */
+        @keyframes dramaticReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+                letter-spacing: 1.5rem; /* 글자 간격이 넓어지며 등장 */
+            }
+        }
+
+        /* 2. 힌트 텍스트 부드럽게 올라오는 효과 */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <div class="hero" onclick="location.href='right.html'">
         <h1>AVALON</h1>
-        <div class="hint">SWIPE LEFT OR CLICK TO START</div>
+        <div class="hint">SWIPE LEFT TO ENTER</div>
     </div>
 
     <script>
-        // 터치 드래그 감지 (모바일용)
+        // 터치 드래그 감지 (모바일용) - 기존과 동일
         let touchstartX = 0;
-        let touchendX = 0;
-        
-        document.addEventListener('touchstart', e => {
-            touchstartX = e.changedTouches[0].screenX;
-        });
-
+        document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
-            touchendX = e.changedTouches[0].screenX;
-            if (touchstartX - touchendX > 50) { // 왼쪽으로 밀었을 때
-                location.href = 'right.html';
-            }
+            if (touchstartX - e.changedTouches[0].screenX > 50) location.href = 'right.html';
         });
     </script>
 </body>
