@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVALON | Game Trailer</title>
+    <style>
+        /* [1. 디자인 테마 통일 - about.html과 동일] */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Pretendard', serif; }
+        body { 
+            background-color: #0b0e14; 
+            color: #eee; 
+            line-height: 1.8; 
+            overflow-x: hidden;
+            opacity: 0; animation: fadeIn 0.8s forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* [2. 히어로 섹션 & 배경] */
+        .hero-section {
+            min-height: 100vh; /* 영상 크기에 따라 늘어나도록 min-height로 변경 */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            /* 배경 이미지는 about.html과 동일하게 설정 */
+            background-image: linear-gradient(rgba(11, 14, 20, 0.8), rgba(11, 14, 20, 0.8)), 
+                              url('./cover.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 20px;
+        }
+
+        /* [뒤로가기 힌트] */
+        .back-hint {
+            position: absolute; top: 30px; left: 30px;
+            color: #d4af37; font-size: 0.9rem; font-weight: bold;
+            letter-spacing: 0.1rem; cursor: pointer;
+            z-index: 100;
+        }
+
+        /* [3. 컨텐츠 컨테이너] */
+        .content-container {
+            width: 100%;
+            max-width: 900px; /* 영상은 조금 더 넓게 */
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 5px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .main-text {
+            font-size: 1.1rem;
+            color: #adb5bd;
+            margin-bottom: 30px;
+            word-break: keep-all;
+        }
+
+        /* [4. 비디오 전용 스타일 (반응형 16:9)] */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 비율 유지 (9 / 16 * 100) */
+            height: 0;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-wrapper iframe, 
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .glass-card { padding: 25px; }
+            .section-header { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-hint" onclick="goBack()">SWIPE RIGHT TO BACK →</div>
+
+    <section class="hero-section">
+        <div class="content-container">
+            
+            <div class="glass-card">
+                <h2 class="section-header">Trailer & Guide</h2>
+                <p class="main-text">
+                    아발론의 세계관과 플레이 방법을 영상으로 확인하세요.<br>
+                    선과 악의 숨막히는 대결이 지금 시작됩니다.
+                </p>
+
+                <div class="video-wrapper">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=ExampleCode" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+
+                    </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; color: #444; font-size: 0.8rem;">
+        &copy; 2026 AVALON PROJECT. SWIPE RIGHT TO RETURN TO MENU.
+    </footer>
+
+    <script>
+        // 페이지 전환 함수
+        function goBack() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = '0.5s';
+            setTimeout(() => { location.href = 'right.html'; }, 500);
+        }
+
+        // 스와이프 제스처 (about.html과 동일
