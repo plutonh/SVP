@@ -5,78 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVALON | Menu</title>
     <style>
-        /* 기본 설정 및 레이아웃은 이전과 동일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; background-color: #0b0e14; font-family: 'Segoe UI', sans-serif; }
-
         .container {
             display: grid; width: 100vw; height: 100vh; padding: 40px; gap: 20px;
             align-content: center; justify-content: center;
-            transition: opacity 0.5s ease; /* 전체 페이드 아웃용 */
         }
-
-        /* 반응형 그리드 (2x2 / 1x4) */
         @media (orientation: portrait) { .container { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); } }
         @media (orientation: landscape) { .container { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; } }
-
         .menu-box {
             display: flex; justify-content: center; align-items: center;
             color: #d4af37; font-size: 1.2rem; font-weight: bold; text-decoration: none;
             background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            opacity: 0; transform: translateY(30px);
-            animation: slideIn 0.6s ease-out forwards;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);
+            opacity: 0; transform: translateY(30px); animation: slideIn 0.6s ease-out forwards;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
         }
-
         .menu-box:hover { background: #d4af37; color: #1a1a1a; transform: translateY(-10px) scale(1.05); }
-
-        /* [애니메이션] 등장 */
-        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
-
-        /* [애니메이션] 퇴장 (클릭 시) */
         .fade-out { opacity: 0 !important; transform: scale(0.9) !important; transition: 0.5s; }
-
+        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
         .menu-box:nth-child(1) { animation-delay: 0.1s; }
         .menu-box:nth-child(2) { animation-delay: 0.2s; }
         .menu-box:nth-child(3) { animation-delay: 0.3s; }
         .menu-box:nth-child(4) { animation-delay: 0.4s; }
-
-        .back-btn { position: absolute; top: 20px; left: 20px; color: #d4af37; text-decoration: none; border: 1px solid #d4af37; padding: 5px 15px; border-radius: 50px; z-index: 100; }
     </style>
 </head>
 <body>
-
-    <a href="index.html" class="back-btn">← BACK</a>
-    
     <div class="container" id="menuContainer">
         <div class="menu-box" onclick="navigateTo('./about.html')">ABOUT</div>
-        <div class="menu-box">STORY</div>
-        <div class="menu-box">RULE</div>
+        <div class="menu-box" onclick="navigateTo('./video.mp4')">VIDEO</div>
+        <div class="menu-box" onclick="navigateTo('./rule.html')">RULE</div>
         <div class="menu-box" onclick="navigateTo('./contactus.html')">CONTACT US</div>
     </div>
-
     <script>
         function navigateTo(url) {
-            const container = document.getElementById('menuContainer');
-            const boxes = document.querySelectorAll('.menu-box');
-            
-            // 모든 박스에 퇴장 애니메이션 적용
-            boxes.forEach(box => box.classList.add('fade-out'));
-            
-            // 0.5초 뒤에 페이지 이동
-            setTimeout(() => {
-                window.location.href = url;
-            }, 500);
+            document.querySelectorAll('.menu-box').forEach(box => box.classList.add('fade-out'));
+            setTimeout(() => { location.href = url; }, 500);
         }
-
-        // 오른쪽 스와이프 시 메인으로 이동
         let touchstartX = 0;
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
-            if (e.changedTouches[0].screenX - touchstartX > 100) window.location.href = 'index.html';
+            let touchendX = e.changedTouches[0].screenX;
+            // 1. 왼쪽으로 밀었을 때 (R -> L) : 하위 페이지(about.html)
+            if (touchstartX - touchendX > 100) navigateTo('about.html');
+            // 2. 오른쪽으로 밀었을 때 (L -> R) : 상위 페이지(index.html)
+            if (touchendX - touchstartX > 100) location.href = 'index.html';
         });
     </script>
 </body>
