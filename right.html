@@ -1,56 +1,33 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVALON | Menu</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow: hidden; background-color: #0b0e14; font-family: 'Segoe UI', sans-serif; }
-        .container {
-            display: grid; width: 100vw; height: 100vh; padding: 40px; gap: 20px;
-            align-content: center; justify-content: center;
-        }
-        @media (orientation: portrait) { .container { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); } }
-        @media (orientation: landscape) { .container { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; } }
-        .menu-box {
-            display: flex; justify-content: center; align-items: center;
-            color: #d4af37; font-size: 1.2rem; font-weight: bold; text-decoration: none;
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);
-            opacity: 0; transform: translateY(30px); animation: slideIn 0.6s ease-out forwards;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
-        }
-        .menu-box:hover { background: #d4af37; color: #1a1a1a; transform: translateY(-10px) scale(1.05); }
-        .fade-out { opacity: 0 !important; transform: scale(0.9) !important; transition: 0.5s; }
-        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
-        .menu-box:nth-child(1) { animation-delay: 0.1s; }
-        .menu-box:nth-child(2) { animation-delay: 0.2s; }
-        .menu-box:nth-child(3) { animation-delay: 0.3s; }
-        .menu-box:nth-child(4) { animation-delay: 0.4s; }
-    </style>
-</head>
-<body>
-    <div class="container" id="menuContainer">
-        <div class="menu-box" onclick="navigateTo('./about.html')">ABOUT</div>
-        <div class="menu-box" onclick="navigateTo('./video.mp4')">VIDEO</div>
-        <div class="menu-box" onclick="navigateTo('./rule.html')">RULE</div>
-        <div class="menu-box" onclick="navigateTo('./contactus.html')">CONTACT US</div>
-    </div>
-    <script>
-        function navigateTo(url) {
-            document.querySelectorAll('.menu-box').forEach(box => box.classList.add('fade-out'));
-            setTimeout(() => { location.href = url; }, 500);
-        }
-        let touchstartX = 0;
-        document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
-        document.addEventListener('touchend', e => {
-            let touchendX = e.changedTouches[0].screenX;
-            // 1. 왼쪽으로 밀었을 때 (R -> L) : 하위 페이지(about.html)
-            if (touchstartX - touchendX > 100) navigateTo('about.html');
-            // 2. 오른쪽으로 밀었을 때 (L -> R) : 상위 페이지(index.html)
-            if (touchendX - touchstartX > 100) location.href = 'index.html';
+<script>
+    function navigateTo(url) {
+        const boxes = document.querySelectorAll('.menu-box');
+        // 모든 박스에 퇴장 효과 부여
+        boxes.forEach(box => {
+            box.style.opacity = '0';
+            box.style.transform = 'scale(0.9) translateY(-20px)';
+            box.style.transition = '0.5s';
         });
-    </script>
-</body>
-</html>
+        
+        // 0.5초 뒤 페이지 이동
+        setTimeout(() => {
+            window.location.href = url;
+        }, 500);
+    }
+
+    let touchstartX = 0;
+    document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
+    document.addEventListener('touchend', e => {
+        let touchendX = e.changedTouches[0].screenX;
+        
+        // 1. 왼쪽으로 밀었을 때 (R -> L) : 하위 페이지(About)로 이동
+        if (touchstartX - touchendX > 100) {
+            navigateTo('./about.html');
+        }
+        // 2. 오른쪽으로 밀었을 때 (L -> R) : 상위 페이지(Index)로 이동
+        if (touchendX - touchstartX > 100) {
+            document.body.style.opacity = '0';
+            document.body.style.transition = '0.5s';
+            setTimeout(() => { window.location.href = 'index.html'; }, 500);
+        }
+    });
+</script>
