@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVALON | Rules</title>
     <style>
+        /* 기본 설정 */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { 
             background-color: #0b0e14; color: white; overflow-x: hidden;
@@ -12,35 +13,30 @@
         }
         @keyframes fadeInPage { to { opacity: 1; transform: translateY(0); } }
 
+        /* 상단 헤더 영역 */
         .header-section {
-            height: 25vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            height: 20vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: linear-gradient(rgba(11, 14, 20, 0.8), rgba(11, 14, 20, 0.8)), url('./cover.png');
             background-size: cover; text-align: center;
         }
 
         .title { font-size: 2.5rem; color: #d4af37; font-family: 'Times New Roman', serif; letter-spacing: 0.3rem; }
-        .back-hint { color: #d4af37; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 0.8rem; text-decoration: underline; }
+        .back-hint { color: #d4af37; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 0.8rem; letter-spacing: 0.1rem; }
 
-        /* PDF 섹션 및 버튼 스타일 */
+        /* PDF 뷰어 섹션 */
         .pdf-section {
             padding: 20px; display: flex; flex-direction: column; align-items: center;
-            min-height: 70vh;
+            height: 80vh; /* 화면의 나머지 공간을 충분히 차지하도록 설정 */
         }
-
-        .view-btn {
-            background: #d4af37; color: #0b0e14; padding: 15px 30px; 
-            border-radius: 50px; font-weight: bold; text-decoration: none;
-            margin-bottom: 20px; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        .view-btn:hover { background: #fff; transform: scale(1.05); }
 
         .pdf-viewer {
-            width: 100%; max-width: 1000px; height: 60vh;
+            width: 100%; max-width: 1000px; height: 100%;
             border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px; background-color: #1a1a1a;
+            border-radius: 15px; 
+            background-color: #fff; /* PDF 로드 전이나 미지원 시 흰색 배경 유지 */
         }
 
-        footer { text-align: center; padding: 30px; color: #444; font-size: 0.8rem; }
+        footer { text-align: center; padding: 20px; color: #444; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -51,11 +47,8 @@
     </section>
 
     <section class="pdf-section">
-        <a href="./avalon.pdf" target="_blank" class="view-btn">📄 규칙서 전체화면으로 보기</a>
-        
         <iframe class="pdf-viewer" src="./avalon.pdf">
             이 브라우저는 PDF 미리보기를 지원하지 않습니다. 
-            위의 버튼을 눌러 확인해 주세요.
         </iframe>
     </section>
 
@@ -71,6 +64,7 @@
         let touchstartX = 0;
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
+            // 오른쪽으로 밀면 뒤로 (right.html)
             if (e.changedTouches[0].screenX - touchstartX > 100) goBack();
         });
     </script>
