@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Game Paradise | 보드게임의 세계</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; }
+        a { text-decoration: none; color: inherit; }
+
+        /* 헤더 & 네비게이션 */
+        header { background: #2c3e50; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: bold; cursor: pointer; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a:hover { color: #f1c40f; }
+
+        /* 히어로 섹션 */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; height: 400px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+        .btn { background: #f1c40f; color: #2c3e50; padding: 10px 25px; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #e67e22; color: white; }
+
+        /* 보드게임 리스트 섹션 */
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+        /* 카드 스타일 */
+        .game-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .game-card:hover { transform: translateY(-10px); }
+        .game-img { width: 100%; height: 200px; background: #ddd; object-fit: cover; }
+        .game-info { padding: 20px; }
+        .game-tag { display: inline-block; background: #ecf0f1; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 10px; color: #7f8c8d; }
+        .game-title { font-size: 1.25rem; margin-bottom: 10px; }
+        .game-desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+
+        /* 푸터 */
+        footer { background: #2c3e50; color: white; text-align: center; padding: 30px 0; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🎲 BG Paradise</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>나에게 맞는 보드게임을 찾아보세요</h1>
+        <p>전략, 파티, 추리까지 모든 장르의 보드게임을 소개합니다.</p>
+        <a href="#games" class="btn">게임 둘러보기</a>
+    </section>
+
+    <div class="container" id="games">
+        <h2 class="section-title">인기 보드게임</h2>
+        <div class="game-grid">
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=400&q=80" alt="Catan" class="game-img">
+                <div class="game-info">
+                    <span class="game-tag">전략 / 자원관리</span>
+                    <h3 class="game-title">카탄 (Catan)</h3>
+                    <p class="game-desc">무인도에서 자원을 채집하고 마을을 건설하여 최고의 문명을 만드세요.</p>
+                    <a href="#" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">상세보기</a>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?auto=format&fit=crop&w=400&q=80" alt="Splendor" class="game-img">
+                <div class="game-info">
+                    <span class="game-tag">전략 / 보석수집</span>
+                    <h3 class="game-title">스플렌더 (Splendor)</h3>
+                    <p class="game-desc">보석 상인이 되어 귀족들의 마음을 사고 승점을 획득하는 우아한 전략 게임입니다.</p>
+                    <a href="#" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">상세보기</a>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1601961405399-801fb1f34581?auto=format&fit=crop&w=400&q=80" alt="Dixit" class="game-img">
+                <div class="game-info">
+                    <span class="game-tag">파티 / 심리</span>
+                    <h3 class="game-title">딕싯 (Dixit)</h3>
+                    <p class="game-desc">추상적인 카드를 보고 이야기꾼의 상상력을 맞추는 감성적인 게임입니다.</p>
+                    <a href="#" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">상세보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Board Game Paradise. Built with GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
