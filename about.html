@@ -3,171 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아발론(Avalon) 보드게임 소개</title>
+    <title>AVALON | Info</title>
     <style>
-        /* 기본 스타일 초기화 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-        }
-
-        /* 1. 히어로 섹션 (페이지 진입 화면) */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0b0e14; color: white; overflow-x: hidden; }
         .hero-section {
-            height: 100vh; /* 화면 전체 높이 사용 */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            
-            /* 배경 이미지 설정 (어두운 오버레이 추가) */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                              url('PLACEHOLDER_IMAGE.jpg'); /* 여기에 이미지 경로를 넣으세요 */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* 스크롤 시 배경 고정 효과 */
+            height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./cover.png');
+            background-size: cover; background-attachment: fixed; text-align: center;
         }
-
-        .title {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        /* 게임 정보 카드 컨테이너 */
-        .info-container {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* 개별 정보 박스 스타일 (유리 질감 효과) */
+        .title { font-size: 4rem; color: #d4af37; margin-bottom: 2rem; }
+        .info-container { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; padding: 0 20px; }
         .info-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 2.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            min-width: 150px;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3); min-width: 140px;
         }
-
-        .info-label {
-            font-size: 0.9rem;
-            color: #ddd;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .info-value {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        /* 스크롤 유도 화살표 */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            animation: bounce 2s infinite;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* 2. PDF 임베드 섹션 */
-        .pdf-section {
-            height: 100vh;
-            background-color: #1a1a1a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px;
-        }
-
-        .pdf-header {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .pdf-viewer {
-            width: 100%;
-            max-width: 1000px;
-            height: 80%;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            background-color: white;
-        }
-
-        /* 모바일 대응 */
-        @media (max-width: 768px) {
-            .title { font-size: 2.5rem; }
-            .info-container { flex-direction: column; gap: 1rem; width: 80%; }
-            .pdf-section { padding: 20px; }
-        }
+        .info-label { font-size: 0.8rem; color: #d4af37; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .pdf-section { height: 100vh; padding: 50px; display: flex; flex-direction: column; align-items: center; background: #000; }
+        .pdf-viewer { width: 100%; max-width: 900px; height: 80%; border: 1px solid #d4af37; border-radius: 10px; }
     </style>
 </head>
 <body>
-
     <section class="hero-section">
-        <h1 class="title">Game Sped<>
-        
+        <h1 class="title">ABOUT GAME</h1>
         <div class="info-container">
-            <div class="info-box">
-                <div class="info-label">Maker</div>
-                <div class="info-value">Indie Boards & Cards</div>
-            </div>
-            <div class="info-box">
-                <div class="info-label">Difficulty</div>
-                <div class="info-value">★★☆☆☆</div>
-            </div>
-            <div class="info-box">
-                <div class="info-label">Genre</div>
-                <div class="info-value">mystery, party</div>
-            </div>
-            <div class="info-box">
-                <div class="info-label">Difficulty</div>
-                <div class="info-value">☆☆☆</div>
-            </div>
-            <div class="info-box">
-                <div class="info-label">Players</div>
-                <div class="info-value">5~10</div>
-            </div>
-            <div class="info-box">
-                <div class="info-label">Playtime</div>
-                <div class="info-value">30m</div>
-            </div>
+            <div class="info-box"><div class="info-label">Players</div><div class="value">5~10</div></div>
+            <div class="info-box"><div class="info-label">Playtime</div><div class="value">30m</div></div>
+            <div class="info-box"><div class="info-label">Difficulty</div><div class="value">★★☆☆☆</div></div>
         </div>
-
-        <div class="scroll-indicator">▼</div>
+        <p style="margin-top: 50px; color: #d4af37; opacity: 0.6;">← SWIPE LEFT TO BACK</p>
     </section>
 
     <section class="pdf-section">
-        <h2 class="pdf-header">게임 규칙 설명서 (PDF)</h2>
-        <iframe class="pdf-viewer" src="game_rule.pdf">
-            이 브라우저는 PDF 미리보기를 지원하지 않습니다. 
-            <a href="game_rule.pdf">여기서 다운로드하세요.</a>
-        </iframe>
+        <h2 style="color:#d4af37; margin-bottom:20px;">Rule Book</h2>
+        <iframe class="pdf-viewer" src="game_rule.pdf"></iframe>
     </section>
 
+    <script>
+        let touchstartX = 0;
+        document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
+        document.addEventListener('touchend', e => {
+            if (touchstartX - e.changedTouches[0].screenX > 100) {
+                document.body.style.opacity = '0'; document.body.style.transition = '0.5s';
+                setTimeout(() => location.href = 'right.html', 500);
+            }
+        });
+    </script>
 </body>
 </html>
