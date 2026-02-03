@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVALON | Contact Us</title>
     <style>
+        /* [1. 디자인 테마 통일] */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Pretendard', sans-serif; }
         
         body { 
-            background-color: #0b0e14; color: #eee; line-height: 1.6; padding-bottom: 50px;
-            opacity: 0; transform: translateY(10px);
+            background-color: #0b0e14; 
+            color: #eee; 
+            line-height: 1.6; 
+            padding-bottom: 50px;
+            overflow-x: hidden;
+            opacity: 0; 
+            transform: translateY(10px);
             animation: fadeInPage 0.8s ease-out forwards;
         }
 
@@ -17,30 +23,87 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
+        /* [2. 네비게이션] */
         .top-nav { padding: 30px 0; }
-        .back-text { color: #d4af37; cursor: pointer; font-weight: bold; font-size: 0.9rem; letter-spacing: 0.1rem; }
+        .back-text { 
+            color: #d4af37; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            letter-spacing: 0.1rem; 
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .back-text:hover { transform: translateX(-5px); opacity: 0.8; }
 
-        h2 { color: #d4af37; font-size: 2rem; border-left: 4px solid #d4af37; padding-left: 15px; margin: 60px 0 30px; text-transform: uppercase; }
+        h2 { 
+            color: #d4af37; 
+            font-size: 2rem; 
+            border-left: 4px solid #d4af37; 
+            padding-left: 15px; 
+            margin: 60px 0 30px; 
+            text-transform: uppercase; 
+        }
 
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); margin-bottom: 25px; }
+        /* [3. 유리 질감 카드] */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            padding: 30px; 
+            border-radius: 20px; 
+            backdrop-filter: blur(10px); 
+            margin-bottom: 25px; 
+        }
 
-        /* 팀 소개 그리드 */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .team-member h3 { color: #d4af37; margin: 15px 0 10px; font-size: 1.2rem; }
-        .photo-placeholder { width: 100%; height: 180px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(212, 175, 55, 0.3); border: 1px dashed rgba(212, 175, 55, 0.2); }
+        /* [4. 팀 소개 및 이미지 설정 - 사진 크기 조절 핵심] */
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+        
+        .team-member { text-align: center; }
+        
+        /* 사진 크기를 카드의 100% 너비에 맞추고 높이를 제한함 */
+        .team-photo { 
+            width: 100%; 
+            height: 200px; /* 원하는 높이로 고정 */
+            object-fit: cover; /* 이미지가 비율에 맞게 꽉 차도록 설정 */
+            border-radius: 12px; 
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
 
-        /* FAQ 스타일 */
+        .team-member h3 { color: #d4af37; margin-bottom: 5px; font-size: 1.2rem; }
+        .team-member p { color: #adb5bd; font-size: 0.9rem; }
+
+        /* [5. FAQ 스타일] */
         .faq-item { margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
         .question { color: #d4af37; font-weight: bold; margin-bottom: 8px; display: block; }
         .answer { color: #adb5bd; font-size: 0.95rem; }
 
-        /* 연락처 & 지도 */
+        /* [6. 연락처 & 지도] */
         .contact-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
         @media (max-width: 850px) { .contact-layout { grid-template-columns: 1fr; } }
 
-        input, textarea, button { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; margin-top: 10px; }
-        button { background: #d4af37; color: #0b0e14; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        button:hover { background: #fff; }
+        input, textarea, button { 
+            width: 100%; padding: 14px; border-radius: 10px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(0,0,0,0.3); color: white; margin-top: 10px; 
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: #d4af37; outline: none; }
+        
+        button { 
+            background: #d4af37; color: #0b0e14; font-weight: bold; 
+            border: none; cursor: pointer; margin-top: 20px; 
+        }
+        button:hover { background: #fff; transform: translateY(-3px); }
+
+        .map-placeholder { 
+            height: 200px; background: #1a1a1a; border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center; color: #444; 
+        }
 
         footer { text-align: center; padding: 60px 0; color: #555; font-size: 0.8rem; }
     </style>
@@ -91,12 +154,20 @@
             <section id="contact">
                 <h2>Contact Us</h2>
                 <div class="glass-card">
-                    <form><input type="text" placeholder="Name"><input type="email" placeholder="Email"><textarea rows="4" placeholder="Message"></textarea><button type="button">SEND</button></form>
+                    <form>
+                        <input type="text" placeholder="Name">
+                        <input type="email" placeholder="Email">
+                        <textarea rows="4" placeholder="Message"></textarea>
+                        <button type="button">SEND</button>
+                    </form>
                 </div>
             </section>
             <section id="location">
                 <h2>Location</h2>
-                <div class="glass-card"><p>서울시 강남구 테헤란로 123</p><div style="height:150px; background:#1a1a1a; margin-top:15px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#444;">MAP AREA</div></div>
+                <div class="glass-card">
+                    <p style="margin-bottom: 10px;">서울시 강남구 테헤란로 123</p>
+                    <div class="map-placeholder">MAP AREA</div>
+                </div>
             </section>
         </div>
 
@@ -113,7 +184,6 @@
         let touchstartX = 0;
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
-            // 오른쪽으로 밀면 뒤로 (right.html)
             if (e.changedTouches[0].screenX - touchstartX > 100) goBack();
         });
     </script>
