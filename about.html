@@ -3,49 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVALON | Info</title>
+    <title>AVALON | About Game</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #0b0e14; color: white; overflow-x: hidden; }
+        /* [1. 디자인 테마 통일] */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Pretendard', serif; }
+        body { 
+            background-color: #0b0e14; 
+            color: #eee; 
+            line-height: 1.8; 
+            overflow-x: hidden;
+            opacity: 0; animation: fadeIn 0.8s forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* [2. 히어로 섹션] */
         .hero-section {
-            height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./cover.png');
-            background-size: cover; background-attachment: fixed; text-align: center;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background-image: linear-gradient(rgba(11, 14, 20, 0.8), rgba(11, 14, 20, 0.8)), 
+                              url('./cover.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 20px;
         }
-        .title { font-size: 4rem; color: #d4af37; margin-bottom: 2rem; }
-        .info-container { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; padding: 0 20px; }
-        .info-box {
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
-            padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3); min-width: 140px;
+
+        .back-hint {
+            position: absolute; top: 30px; left: 30px;
+            color: #d4af37; font-size: 0.9rem; font-weight: bold;
+            letter-spacing: 0.1rem; cursor: pointer;
+            z-index: 100;
         }
-        .info-label { font-size: 0.8rem; color: #d4af37; margin-bottom: 0.5rem; text-transform: uppercase; }
-        .pdf-section { height: 100vh; padding: 50px; display: flex; flex-direction: column; align-items: center; background: #000; }
-        .pdf-viewer { width: 100%; max-width: 900px; height: 80%; border: 1px solid #d4af37; border-radius: 10px; }
+
+        .title {
+            font-size: clamp(3rem, 10vw, 5rem);
+            color: #d4af37;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* [3. 소개 텍스트 (What is Avalon?)] */
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 5px;
+        }
+
+        .main-text {
+            font-size: 1.1rem;
+            color: #adb5bd;
+            word-break: keep-all;
+        }
+
+        /* [4. 게임 스펙 그리드] */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .spec-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 20px 10px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .spec-box:hover { background: rgba(212, 175, 55, 0.15); transform: translateY(-5px); }
+
+        .spec-label {
+            font-size: 0.75rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .spec-value {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* [5. PDF 섹션] */
+        .pdf-section {
+            padding: 80px 20px;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            max-width: 1000px;
+            height: 80vh;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            background-color: #1a1a1a;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .spec-grid { grid-template-columns: repeat(2, 1fr); }
+            .glass-card { padding: 25px; }
+        }
     </style>
 </head>
 <body>
+
+    <div class="back-hint" onclick="location.href='right.html'">SWIPE RIGHT TO BACK →</div>
+
     <section class="hero-section">
-        <h1 class="title">ABOUT GAME</h1>
-        <div class="info-container">
-            <div class="info-box"><div class="info-label">Players</div><div class="value">5~10</div></div>
-            <div class="info-box"><div class="info-label">Playtime</div><div class="value">30m</div></div>
-            <div class="info-box"><div class="info-label">Difficulty</div><div class="value">★★☆☆☆</div></div>
+        <h1 class="title">ABOUT</h1>
+        <div class="spec-grid" style="max-width: 900px; width: 100%;">
+            <div class="spec-box">
+                <div class="spec-label">Maker</div>
+                <div class="spec-value">Indie Boards</div>
+            </div>
+            <div class="spec-box">
+                <div class="spec-label">Designer</div>
+                <div class="spec-value">Don Eskridge</div>
+            </div>
+            <div class="spec-box">
+                <div class="spec-label">Players</div>
+                <div class="spec-value">5–10 인</div>
+            </div>
+            <div class="spec-box">
+                <div class="spec-label">Playtime</div>
+                <div class="spec-value">약 30분</div>
+            </div>
         </div>
-        <p style="margin-top: 50px; color: #d4af37; opacity: 0.6;">← SWIPE LEFT TO BACK</p>
     </section>
 
+    <div class="content-container">
+        <div class="glass-card">
+            <h2 class="section-header">What is Avalon?</h2>
+            <p class="main-text">
+                <strong>레지스탕스: 아발론(The Resistance: Avalon)</strong>은 중세 전설 아서 왕과 원탁의 기사 세계관을 바탕으로 한 정체 은폐 · 추리 · 심리전 보드게임입니다.<br><br>
+                플레이어들은 정의의 세력과 어둠의 세력 중 하나의 역할을 맡아, 서로의 정체를 숨긴 채 임무의 성공과 실패를 두고 치열한 두뇌 싸움을 벌이게 됩니다.<br><br>
+                말 한마디, 눈빛 하나, 투표 결과까지 모든 것이 단서가 되는 신비로운 탐험 속으로 초대합니다. 대화와 추리가 게임의 전부라고 해도 과언이 아닙니다.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="section-header">Game Spec</h2>
+            <div class="spec-grid">
+                <div class="spec-box">
+                    <div class="spec-label">Genre</div>
+                    <div class="spec-value">추리, 심리전, 파티</div>
+                </div>
+                <div class="spec-box">
+                    <div class="spec-label">Age</div>
+                    <div class="spec-value">13세 이상</div>
+                </div>
+                <div class="spec-box">
+                    <div class="spec-label">Language</div>
+                    <div class="spec-value">한국어/영어</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="pdf-section">
-        <h2 style="color:#d4af37; margin-bottom:20px;">Rule Book</h2>
-        <iframe class="pdf-viewer" src="game_rule.pdf"></iframe>
+        <h2 style="color:#d4af37; margin-bottom:30px; font-family:'Times New Roman', serif;">RULE BOOK (PDF)</h2>
+        <iframe class="pdf-viewer" src="game_rule.pdf">
+            이 브라우저는 PDF 미리보기를 지원하지 않습니다. 
+            <a href="game_rule.pdf" style="color:#d4af37;">여기서 다운로드하세요.</a>
+        </iframe>
     </section>
+
+    <footer style="text-align: center; padding: 40px; color: #444; font-size: 0.8rem;">
+        &copy; 2026 AVALON PROJECT. SWIPE RIGHT TO RETURN TO MENU.
+    </footer>
 
     <script>
         let touchstartX = 0;
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
-            if (touchstartX - e.changedTouches[0].screenX > 100) {
-                document.body.style.opacity = '0'; document.body.style.transition = '0.5s';
-                setTimeout(() => location.href = 'right.html', 500);
+            let touchendX = e.changedTouches[0].screenX;
+            // 오른쪽으로 밀었을 때 (L -> R) : 이전 메뉴(right.html)로 이동
+            if (touchendX - touchstartX > 100) {
+                document.body.style.opacity = '0';
+                document.body.style.transition = '0.5s';
+                setTimeout(() => { location.href = 'right.html'; }, 500);
             }
         });
     </script>
