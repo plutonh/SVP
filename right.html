@@ -46,8 +46,10 @@
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
             let touchendX = e.changedTouches[0].screenX;
-            if (touchendX - touchstartX > 100) navigateTo('about.html'); // 앞으로
-            if (touchstartX - touchendX > 100) location.href = 'index.html'; // 뒤로
+            // 1. 왼쪽으로 밀었을 때 (R -> L) : 하위 페이지(about.html)
+            if (touchstartX - touchendX > 100) navigateTo('about.html');
+            // 2. 오른쪽으로 밀었을 때 (L -> R) : 상위 페이지(index.html)
+            if (touchendX - touchstartX > 100) location.href = 'index.html';
         });
     </script>
 </body>
