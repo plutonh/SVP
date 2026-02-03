@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사 홈페이지 - Contact Us</title>
+    <style>
+        /* [기본 스타일 설정 - 디자인 확정 전 임시 스타일] */
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* [상단 네비게이션 메뉴] */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* [메인 컨테이너] */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* [섹션 공통 스타일] */
+        section {
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        h2 {
+            border-left: 5px solid #333;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* [1. 팀 소개 스타일] */
+        .team-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #eee;
+            padding: 15px;
+            text-align: center;
+        }
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* [2. FAQ 스타일] */
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .answer {
+            padding: 10px 15px;
+            color: #555;
+        }
+
+        /* [3. 위치 및 지도 스타일] */
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #e2e2e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* [Contact Form 스타일] */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* 패딩 포함 크기 계산 */
+        }
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#team">Team 소개</a></li>
+                <li><a href="#faq">FAQ (아발론)</a></li>
+                <li><a href="#location">위치</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <section id="team">
+            <h2>Team 소개</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="photo-placeholder">사진 영역 (이미지 없음)</div>
+                    
+                    <h3>홍길동 (CEO)</h3>
+                    <p>회사 설립자이자 보드게임 전략 기획을 담당하고 있습니다.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="photo-placeholder">사진 영역 (이미지 없음)</div>
+                    
+                    <h3>김철수 (Developer)</h3>
+                    <p>웹사이트 개발 및 유지보수를 담당하는 수석 개발자입니다.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="photo-placeholder">사진 영역 (이미지 없음)</div>
+                    
+                    <h3>이영희 (Designer)</h3>
+                    <p>사용자 경험(UX)과 인터페이스 디자인을 총괄합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>FAQ (자주 묻는 질문)</h2>
+            
+            <div class="faq-item">
+                <div class="question">Q1. 아발론 게임의 적정 인원은 몇 명인가요?</div>
+                <div class="answer">A. 최소 5명에서 최대 10명까지 플레이 가능합니다. 가장 밸런스가 좋은 인원은 7명 또는 8명입니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">Q2. 원정 실패 조건은 어떻게 되나요?</div>
+                <div class="answer">A. 원정대원 중 단 한 명이라도 '실패' 카드를 내면 해당 원정은 실패합니다. (단, 7명 이상 플레이 시 4번째 원정은 실패 카드가 2장 필요합니다.)</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">Q3. 멀린은 암살자가 누구인지 알 수 있나요?</div>
+                <div class="answer">A. 아니요. 멀린은 악의 하수인(미니언)들이 누구인지 알 수 있지만, 그중 누가 구체적으로 '암살자' 역할을 맡았는지는 알 수 없습니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">Q4. 퍼시발의 역할은 무엇인가요?</div>
+                <div class="answer">A. 퍼시발은 게임 시작 시 멀린이 누구인지 알 수 있습니다. 멀린을 보호하고 시민들을 올바른 추리로 이끄는 것이 주된 임무입니다.</div>
+            </div>
+        </section>
+
+        <section id="location">
+            <h2>오시는 길</h2>
+            <p><strong>주소:</strong> 서울특별시 강남구 테헤란로 123, 가상빌딩 5층</p>
+            <p><strong>연락처:</strong> 02-1234-5678</p>
+            
+            <div class="map-placeholder">
+                [지도 표시 영역]<br>
+                (구글 지도/네이버 지도 API 연동 위치)
+            </div>
+        </section>
+
+        <section id="contact" style="border-bottom: none;">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="example@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">문의 내용</label>
+                    <textarea id="message" name="message" rows="5" placeholder="문의하실 내용을 입력해주세요."></textarea>
+                </div>
+                <button type="submit">문의하기</button>
+            </form>
+        </section>
+
+    </div>
+
+    <footer style="background:#333; color:#fff; text-align:center; padding:20px;">
+        <p>&copy; 2024 Company Name. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
