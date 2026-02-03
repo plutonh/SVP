@@ -29,13 +29,14 @@
 <body>
     <div class="hero" onclick="location.href='right.html'">
         <h1>AVALON</h1>
-        <div class="hint">SWIPE RIGHT TO START →</div>
+        <div class="hint">← SWIPE LEFT TO START</div>
     </div>
     <script>
         let touchstartX = 0;
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
-            if (e.changedTouches[0].screenX - touchstartX > 100) location.href = 'right.html';
+            // 왼쪽으로 밀었을 때 (R -> L) : 다음 페이지(right.html)
+            if (touchstartX - e.changedTouches[0].screenX > 100) location.href = 'right.html';
         });
     </script>
 </body>
