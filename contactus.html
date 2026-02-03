@@ -5,40 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVALON | Contact Us</title>
     <style>
-        /* [기존 스타일 유지 및 애니메이션 추가] */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Pretendard', sans-serif; }
         
         body { 
-            background-color: #0b0e14; 
-            color: #eee; 
-            line-height: 1.6; 
-            overflow-x: hidden;
-            padding-bottom: 50px;
-
-            /* 페이지 진입 애니메이션 */
-            opacity: 0;
+            background-color: #0b0e14; color: #eee; line-height: 1.6; padding-bottom: 50px;
+            opacity: 0; transform: translateY(10px);
             animation: fadeInPage 0.8s ease-out forwards;
         }
 
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInPage { to { opacity: 1; transform: translateY(0); } }
 
-        /* ... (중간 스타일 생략 - 기존과 동일) ... */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        .top-nav { padding: 30px 0; }
+        .back-text { color: #d4af37; cursor: pointer; font-weight: bold; font-size: 0.9rem; letter-spacing: 0.1rem; }
 
-        .back-text { 
-            color: #d4af37; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 0.9rem;
-            letter-spacing: 0.1rem;
-            transition: 0.3s;
-            display: inline-block;
-        }
-        .back-text:hover { opacity: 0.7; transform: translateX(-5px); }
+        h2 { color: #d4af37; font-size: 2rem; border-left: 4px solid #d4af37; padding-left: 15px; margin: 60px 0 30px; text-transform: uppercase; }
 
-        /* ... (나머지 스타일 동일) ... */
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); margin-bottom: 25px; }
+
+        /* 팀 소개 그리드 */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .team-member h3 { color: #d4af37; margin: 15px 0 10px; font-size: 1.2rem; }
+        .photo-placeholder { width: 100%; height: 180px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(212, 175, 55, 0.3); border: 1px dashed rgba(212, 175, 55, 0.2); }
+
+        /* FAQ 스타일 */
+        .faq-item { margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+        .question { color: #d4af37; font-weight: bold; margin-bottom: 8px; display: block; }
+        .answer { color: #adb5bd; font-size: 0.95rem; }
+
+        /* 연락처 & 지도 */
+        .contact-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+        @media (max-width: 850px) { .contact-layout { grid-template-columns: 1fr; } }
+
+        input, textarea, button { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; margin-top: 10px; }
+        button { background: #d4af37; color: #0b0e14; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        button:hover { background: #fff; }
+
+        footer { text-align: center; padding: 60px 0; color: #555; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -48,27 +52,69 @@
             <span class="back-text" onclick="goBack()">SWIPE RIGHT TO BACK →</span>
         </div>
 
+        <section id="team">
+            <h2>Team 소개</h2>
+            <div class="team-grid">
+                <div class="glass-card team-member">
+                    <div class="photo-placeholder">DESIGN TEAM PHOTO</div>
+                    <h3>홍보디자인팀</h3>
+                    <p>(이상조, 임원형, 조예나, 지재민, 최준영)</p>
+                </div>
+                <div class="glass-card team-member">
+                    <div class="photo-placeholder">VIDEO TEAM PHOTO</div>
+                    <h3>영상팀</h3>
+                    <p>(이준호, 정세미, 정지원, 조예인)</p>
+                </div>
+                <div class="glass-card team-member">
+                    <div class="photo-placeholder">DEV TEAM PHOTO</div>
+                    <h3>개발팀</h3>
+                    <p>(남종현, 서인주, 신동훈, 이윤지)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>FAQ</h2>
+            <div class="glass-card">
+                <div class="faq-item">
+                    <span class="question">Q. 아발론 게임의 적정 인원은?</span>
+                    <p class="answer">A. 최소 5명에서 최대 10명까지 가능하며, 7~8명을 추천합니다.</p>
+                </div>
+                <div class="faq-item">
+                    <span class="question">Q. 원정 실패 조건은?</span>
+                    <p class="answer">A. 한 명이라도 '실패'를 내면 실패합니다 (단, 7인 이상 4라운드는 2장 필요).</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="contact-layout">
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <div class="glass-card">
+                    <form><input type="text" placeholder="Name"><input type="email" placeholder="Email"><textarea rows="4" placeholder="Message"></textarea><button type="button">SEND</button></form>
+                </div>
+            </section>
+            <section id="location">
+                <h2>Location</h2>
+                <div class="glass-card"><p>서울시 강남구 테헤란로 123</p><div style="height:150px; background:#1a1a1a; margin-top:15px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#444;">MAP AREA</div></div>
+            </section>
         </div>
 
+        <footer>&copy; 2026 AVALON PROJECT</footer>
+    </div>
+
     <script>
-        // 뒤로 가기 함수 (애니메이션 포함)
         function goBack() {
             document.body.style.opacity = '0';
-            document.body.style.transform = 'translateY(10px)';
             document.body.style.transition = '0.5s';
-            setTimeout(() => {
-                window.location.href = 'right.html';
-            }, 500);
+            setTimeout(() => { window.location.href = 'right.html'; }, 500);
         }
 
         let touchstartX = 0;
         document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX);
         document.addEventListener('touchend', e => {
-            let touchendX = e.changedTouches[0].screenX;
-            // 오른쪽으로 밀었을 때 (L -> R) : 이전 메뉴(right.html)로 이동
-            if (touchendX - touchstartX > 100) {
-                goBack();
-            }
+            // 오른쪽으로 밀면 뒤로 (right.html)
+            if (e.changedTouches[0].screenX - touchstartX > 100) goBack();
         });
     </script>
 </body>
